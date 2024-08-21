@@ -3,25 +3,51 @@ import { TConstructorIngredient } from '@utils-types';
 import { BurgerConstructorUI } from '@ui';
 
 import { useSelector, useDispatch } from '../../services/store';
-import { getConstructorsState } from '../../services/constructor/slice';
-import { fetchLogoutUser } from '../../services/auth/action';
+import {
+  getConstructorLoading,
+  getConstructorsState
+} from '../../services/constructor/slice';
+import { fetchOrderBurger } from '../../services/createOrder/slice';
+import { useNavigate } from 'react-router-dom';
+import { clearOrder, getOrder } from '../../services/createOrder/store';
+import { clearIngredients } from '../../services/constructor/slice';
+
 export const BurgerConstructor: FC = () => {
   /** TODO: взять переменные constructorItems, orderRequest и orderModalData из стора */
   const constructorItems = useSelector(getConstructorsState);
+  const orderRequest = useSelector(getConstructorLoading);
+  const orderModalData = useSelector(getOrder);
 
-  const orderRequest = false;
-
-  const orderModalData = null;
-
+  const isAuth = useSelector((state) => state.auth.isAuth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onOrderClick = () => {
-    if (!constructorItems.bun || orderRequest) {
+    const { bun, ingredients } = constructorItems;
+
+    if (!isAuth) {
+      navigate('/login');
+    }
+
+    if (!bun) {
+      console.log('Добавьте булку');
       return;
     }
-    dispatch(fetchLogoutUser);
+
+    if (ingredients.length === 0) {
+      console.log('Добавьте ингредиенты');
+      return;
+    }
+
+    const ingredientIds = ingredients.map((item) => item._id);
+    const order: string[] = [bun._id, ...ingredientIds, bun._id];
+    dispatch(fetchOrderBurger(order));
   };
-  const closeOrderModal = () => {};
+  const closeOrderModal = () => {
+    dispatch(clearOrder());
+    dispatch(clearIngredients());
+    navigate('/', { replace: true });
+  };
 
   const price = useMemo(
     () =>

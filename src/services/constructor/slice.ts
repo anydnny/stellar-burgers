@@ -22,7 +22,8 @@ export const burgerConstructorSlice = createSlice({
   name: 'burgerConstructor',
   initialState,
   selectors: {
-    getConstructorsState: (state) => state.constructorItems
+    getConstructorsState: (state) => state.constructorItems,
+    getConstructorLoading: (state) => state.isLoading
   },
   reducers: {
     addIngredient: {
@@ -41,7 +42,6 @@ export const burgerConstructorSlice = createSlice({
       state,
       { payload }: PayloadAction<TConstructorIngredient>
     ) => {
-      console.log('lol');
       state.constructorItems.ingredients =
         state.constructorItems.ingredients.filter(
           (item) => item.id !== payload.id
@@ -71,6 +71,10 @@ export const burgerConstructorSlice = createSlice({
         nextIngredient,
         currentIngredient
       );
+    },
+    clearIngredients: (state) => {
+      (state.constructorItems.bun = null),
+        (state.constructorItems.ingredients = []);
     }
   }
 });
@@ -80,6 +84,8 @@ export const {
   addIngredient,
   removeIngredient,
   moveUpIngredient,
-  moveDownIngredient
+  moveDownIngredient,
+  clearIngredients
 } = burgerConstructorSlice.actions;
-export const { getConstructorsState } = burgerConstructorSlice.selectors;
+export const { getConstructorsState, getConstructorLoading } =
+  burgerConstructorSlice.selectors;

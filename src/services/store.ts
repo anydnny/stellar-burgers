@@ -4,6 +4,9 @@ import { ingredientsReducer } from './ingredients/slice';
 import { burgerConstructorReducer } from './constructor/slice';
 import { feedsReducer } from './feed/slice';
 import { orderByNumberReducer } from './orderByNumber/slice';
+import { orderReducer } from './orders/slice';
+import { createOrderReducer } from './createOrder/store';
+
 import {
   TypedUseSelectorHook,
   useDispatch as dispatchHook,
@@ -15,7 +18,9 @@ const rootReducer = combineReducers({
   ingredients: ingredientsReducer,
   burgerConstructor: burgerConstructorReducer,
   feeds: feedsReducer,
-  orderByNumber: orderByNumberReducer
+  orderByNumber: orderByNumberReducer,
+  orders: orderReducer,
+  createOrder: createOrderReducer
 }); // Заменить на импорт настоящего редьюсера
 
 const store = configureStore({

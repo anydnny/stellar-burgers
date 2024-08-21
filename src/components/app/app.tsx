@@ -34,10 +34,6 @@ const App = () => {
   const background = location.state?.background;
 
   useEffect(() => {
-    console.log(background);
-  }, [background]);
-
-  useEffect(() => {
     dispatch(fetchIngredients());
   }, []);
 
@@ -122,9 +118,9 @@ const App = () => {
             }
           />
           <Route
-            path='orders/:number'
+            path='/profile/orders/:number'
             element={
-              <Modal title='Заказ' onClose={() => console.log('click')}>
+              <Modal title='Заказ' onClose={() => navigate(-1)}>
                 <OrderInfo />
               </Modal>
             }
