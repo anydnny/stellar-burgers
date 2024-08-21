@@ -40,3 +40,6 @@ export const fetchUpdateUseInfo = createAsyncThunk(
   'user/update',
   async (data: TRegisterData) => updateUserApi(data)
 );
+export const fetchGetUser = createAsyncThunk('user/get', async () =>
+  getUserApi()
+);

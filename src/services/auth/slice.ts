@@ -4,7 +4,8 @@ import {
   fetchRegisterUser,
   fetchLoginUser,
   fetchLogoutUser,
-  fetchUpdateUseInfo
+  fetchUpdateUseInfo,
+  fetchGetUser
 } from './action';
 
 type TAuthInitialState = {
@@ -82,6 +83,19 @@ const authSlice = createSlice({
       })
       .addCase(fetchUpdateUseInfo.rejected, (state, action) => {
         (state.isLoginRequest = true), (state.error = action.error.message);
+      })
+      .addCase(fetchGetUser.pending, (state) => {
+        (state.isLoginRequest = true), (state.isAuth = false);
+      })
+      .addCase(fetchGetUser.fulfilled, (state, action) => {
+        (state.isLoginRequest = false),
+          (state.isAuth = true),
+          (state.userData = action.payload.user);
+      })
+      .addCase(fetchGetUser.rejected, (state, action) => {
+        (state.isLoginRequest = false),
+          (state.isAuth = false),
+          (state.error = action.error.message);
       });
   }
 });

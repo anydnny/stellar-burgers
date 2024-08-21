@@ -26,6 +26,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from '../../services/store';
 import { fetchIngredients } from '../../services/ingredients/action';
+import { fetchGetUser } from '../../services/auth/action';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchIngredients());
+    dispatch(fetchGetUser());
   }, []);
 
   return (
