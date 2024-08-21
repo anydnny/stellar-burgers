@@ -2,9 +2,9 @@ import { FC, useMemo } from 'react';
 import { TConstructorIngredient } from '@utils-types';
 import { BurgerConstructorUI } from '@ui';
 
-import { useSelector } from '../../services/store';
+import { useSelector, useDispatch } from '../../services/store';
 import { getConstructorsState } from '../../services/constructor/slice';
-
+import { fetchLogoutUser } from '../../services/auth/action';
 export const BurgerConstructor: FC = () => {
   /** TODO: взять переменные constructorItems, orderRequest и orderModalData из стора */
   const constructorItems = useSelector(getConstructorsState);
@@ -13,8 +13,13 @@ export const BurgerConstructor: FC = () => {
 
   const orderModalData = null;
 
+  const dispatch = useDispatch();
+
   const onOrderClick = () => {
-    if (!constructorItems.bun || orderRequest) return;
+    if (!constructorItems.bun || orderRequest) {
+      return;
+    }
+    dispatch(fetchLogoutUser);
   };
   const closeOrderModal = () => {};
 
