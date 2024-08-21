@@ -29,19 +29,19 @@ export const BurgerConstructor: FC = () => {
       navigate('/login');
     }
 
-    if (!bun) {
+    if (isAuth && !bun) {
       alert('Добавьте булку');
       return;
-    }
-
-    if (ingredients.length === 0) {
+    } else if (isAuth && ingredients.length === 0) {
       alert('Добавьте ингредиенты');
       return;
     }
 
-    const ingredientIds = ingredients.map((item) => item._id);
-    const order: string[] = [bun._id, ...ingredientIds, bun._id];
-    dispatch(fetchOrderBurger(order));
+    if (isAuth && bun && ingredients.length > 0) {
+      const ingredientIds = ingredients.map((item) => item._id);
+      const order: string[] = [bun._id, ...ingredientIds, bun._id];
+      dispatch(fetchOrderBurger(order));
+    }
   };
   const closeOrderModal = () => {
     dispatch(clearOrder());
