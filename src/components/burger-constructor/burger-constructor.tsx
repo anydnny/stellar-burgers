@@ -30,12 +30,12 @@ export const BurgerConstructor: FC = () => {
     }
 
     if (!bun) {
-      console.log('Добавьте булку');
+      alert('Добавьте булку');
       return;
     }
 
     if (ingredients.length === 0) {
-      console.log('Добавьте ингредиенты');
+      alert('Добавьте ингредиенты');
       return;
     }
 
