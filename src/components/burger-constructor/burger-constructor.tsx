@@ -7,9 +7,9 @@ import {
   getConstructorLoading,
   getConstructorsState
 } from '../../services/constructor/slice';
-import { fetchOrderBurger } from '../../services/createOrder/slice';
+import { fetchOrderBurger } from '../../services/createOrder/action';
 import { useNavigate } from 'react-router-dom';
-import { clearOrder, getOrder } from '../../services/createOrder/store';
+import { clearOrder, getOrder } from '../../services/createOrder/slice';
 import { clearIngredients } from '../../services/constructor/slice';
 
 export const BurgerConstructor: FC = () => {

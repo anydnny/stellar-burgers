@@ -5,7 +5,7 @@ import { burgerConstructorReducer } from './constructor/slice';
 import { feedsReducer } from './feed/slice';
 import { orderByNumberReducer } from './orderByNumber/slice';
 import { orderReducer } from './orders/slice';
-import { createOrderReducer } from './createOrder/store';
+import { createOrderReducer } from './createOrder/slice';
 
 import {
   TypedUseSelectorHook,

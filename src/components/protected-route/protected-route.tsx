@@ -18,7 +18,7 @@ export const ProtectedRoute = ({
   const user = useSelector((state) => state.auth.userData.email);
 
   if (user && onlyUnAuth) {
-    return <Navigate to={from} state={location} />;
+    return <Navigate to={from} state={location} replace />;
   }
 
   if (!user && !onlyUnAuth) {
