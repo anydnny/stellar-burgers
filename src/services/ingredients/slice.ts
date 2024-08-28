@@ -7,7 +7,7 @@ type TIngregientsInitialState = {
   isLoading: boolean;
   error?: string;
 };
-const initialState: TIngregientsInitialState = {
+export const initialState: TIngregientsInitialState = {
   ingredients: [],
   isLoading: false
 };
@@ -28,6 +28,7 @@ export const ingredientsSlice = createSlice({
       })
       .addCase(fetchIngredients.fulfilled, (state, action) => {
         (state.isLoading = false), (state.ingredients = action.payload);
+        console.log(action.payload);
       });
   }
 });

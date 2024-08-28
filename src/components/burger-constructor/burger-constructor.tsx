@@ -40,6 +40,7 @@ export const BurgerConstructor: FC = () => {
     if (isAuth && bun && ingredients.length > 0) {
       const ingredientIds = ingredients.map((item) => item._id);
       const order: string[] = [bun._id, ...ingredientIds, bun._id];
+      console.log(order);
       dispatch(fetchOrderBurger(order));
     }
   };
