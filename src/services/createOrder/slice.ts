@@ -8,7 +8,7 @@ type TcreateOrderState = {
   errors?: string;
 };
 
-const initialState: TcreateOrderState = {
+export const initialState: TcreateOrderState = {
   order: null,
   isLoading: false
 };
@@ -31,6 +31,7 @@ const createOrderSlice = createSlice({
       })
       .addCase(fetchOrderBurger.fulfilled, (state, action) => {
         (state.isLoading = false), (state.order = action.payload.order);
+        console.log(action.payload.order);
       })
       .addCase(fetchOrderBurger.rejected, (state, action) => {
         (state.isLoading = false), (state.errors = action.error.message);
