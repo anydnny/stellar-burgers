@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "user": {
+    "email": "keke@gmail.com",
+    "name": "Keke"
+  },
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDAzOGUzMTE5ZDQ1MDAxYjUwMmNmMCIsImlhdCI6MTcyNDkyMjA4MywiZXhwIjoxNzI0OTIzMjgzfQ.acGkxaVjcxPJCt_BPVcMgZHdVGNeaz92fLfXVsYXn8s",
+  "refreshToken": "9f096a6d1249c85e20e357f14eb5b06d855669b32683f22ab6bf4ed296d1a738036ac980e0286593"
+}
