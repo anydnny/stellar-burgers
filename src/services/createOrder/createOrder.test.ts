@@ -1,5 +1,5 @@
 import { expect, test, describe } from '@jest/globals';
-import { createOrderReducer } from './slice';
+import { createOrderReducer, clearOrder } from './slice';
 import { fetchOrderBurger } from './action';
 import { FEEDS } from '../../utils/testData';
 import { initialState } from './slice';
@@ -35,5 +35,15 @@ describe('Тест [reducer] createOrder', () => {
         expect(result.isLoading).toBe(false);
         expect(result.errors).toEqual(actionsState.rejected.error.message);
       });
+  });
+  describe('Тест очистки заказа', () => {
+    test('Тест clearOrder', () => {
+      const initialStateFake = {
+        order: FEEDS[0],
+        isLoading: false
+      };
+      const result = createOrderReducer(initialStateFake, clearOrder());
+      expect(result.order).toEqual(initialState.order);
+    });
   });
 });
