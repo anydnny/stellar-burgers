@@ -8,7 +8,7 @@ type TcreateOrderState = {
   errors?: string;
 };
 
-const initialState: TcreateOrderState = {
+export const initialState: TcreateOrderState = {
   order: null,
   isLoading: false
 };

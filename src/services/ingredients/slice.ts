@@ -7,7 +7,7 @@ type TIngregientsInitialState = {
   isLoading: boolean;
   error?: string;
 };
-const initialState: TIngregientsInitialState = {
+export const initialState: TIngregientsInitialState = {
   ingredients: [],
   isLoading: false
 };
